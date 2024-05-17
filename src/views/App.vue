@@ -67,6 +67,7 @@
 					@track-clicked="onNavTrackClicked"
 					@tracks-clicked="onTracksClicked"
 					@color="onChangeTrackColor"
+					@dashed="onSwitchDashed"
 					@add-to-map-track="onAddTrackToMap" />
 				<AppNavigationDevicesItem
 					v-if="!token"
@@ -2006,7 +2007,15 @@ export default {
 		},
 		onChangeTrackColor(e) {
 			e.track.color = e.color
-			network.editTrack(e.track.id, e.color, this.myMapId, this.token).then((response) => {
+			network.editTrack(e.track.id, e.color, null, this.myMapId, this.token).then((response) => {
+				console.debug(response.data)
+			}).catch((error) => {
+				console.error(error)
+			})
+		},
+		onSwitchDashed(e) {
+			e.track.dashed = !e.track.dashed
+			network.editTrack(e.track.id, null, e.track.dashed, this.myMapId, this.token).then((response) => {
 				console.debug(response.data)
 			}).catch((error) => {
 				console.error(error)

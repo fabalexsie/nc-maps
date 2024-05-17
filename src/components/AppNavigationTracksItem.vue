@@ -38,6 +38,7 @@
 				@zoom="$emit('zoom', $event)"
 				@elevation="$emit('elevation', $event)"
 				@color="$emit('color', $event)"
+				@dashed="$emit('dashed', $event)"
 				@add-to-map-track="$emit('add-to-map-track', $event)" />
 		</template>
 	</NcAppNavigationItem>
