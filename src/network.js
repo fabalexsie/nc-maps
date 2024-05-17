@@ -372,9 +372,10 @@ export function getTrack(id, myMapId = null, isFileId = false, token = null) {
 	return axios.get(url, conf)
 }
 
-export function editTrack(id, color, myMapId = null, token = null) {
+export function editTrack(id, color, dashed, myMapId = null, token = null) {
 	const req = {
 		color,
+		dashed,
 		myMapId,
 	}
 	const url = generateUrl('/apps/maps' + (token ? '/s/' + token : '') + '/tracks/' + id)

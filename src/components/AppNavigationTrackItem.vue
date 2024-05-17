@@ -54,6 +54,12 @@
 				</template>
 				{{ t('maps', 'Change color') }}
 			</NcActionButton>
+			<NcActionButton v-if="parentEnabled && track.enabled && track.isUpdateable"
+				:icon="track.dashed ? 'icon-checkmark' : ''"
+				:close-after-click="false"
+				@click="onSwitchDashedClick">
+				{{ t('maps', 'Dashed line') }}
+			</NcActionButton>
 			<NcActionButton v-if="parentEnabled && track.enabled && track.isShareable && !isPublic()"
 				icon="icon-share"
 				:close-after-click="true"
@@ -125,6 +131,9 @@ export default {
 		},
 		updateTrackColor(e) {
 			this.$emit('color', { track: this.track, color: e.target.value })
+		},
+		onSwitchDashedClick() {
+			this.$emit('dashed', { track: this.track })
 		},
 		isPublic() {
 			return isPublic()
