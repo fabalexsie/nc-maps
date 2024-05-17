@@ -12,6 +12,14 @@
 						<b>{{ t('maps', 'Track/Route') }}:</b>
 						<span>{{ trackName }}</span>
 					</div>
+					<div v-if="pointName">
+						<b>{{ t('maps', 'Name') }}:</b>
+						<span>{{ pointName }}</span>
+					</div>
+					<div v-if="pointDescription">
+						<b>{{ t('maps', 'Description') }}:</b>
+						<span>{{ pointDescription }}</span>
+					</div>
 					<div v-if="date">
 						<b>{{ t('maps', 'Date') }}:</b>
 						<span>{{ date }}</span>
@@ -84,6 +92,18 @@ export default {
 		trackName() {
 			return this.point.track_name
 				? this.point.track_name
+				: null
+		},
+		pointName() {
+			return this.point.name
+				? this.point.name
+				: null
+		},
+		pointDescription() {
+			// eslint-disable-next-line
+			console.log(this.point)
+			return this.point.description
+				? this.point.description
 				: null
 		},
 	},
