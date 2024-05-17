@@ -100,10 +100,8 @@ export default {
 				: null
 		},
 		pointDescription() {
-			// eslint-disable-next-line
-			console.log(this.point)
-			return this.point.description
-				? this.point.description
+			return this.point.desc
+				? this.point.desc
 				: null
 		},
 	},
