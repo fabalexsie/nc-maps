@@ -1,0 +1,23 @@
+# docker build -f Dockerfile.php-make --tag 'php-make' .
+# docker run -it --rm -v ./.:/app php-make
+# (live transpiling frontend): docker run -it --rm -v ./.:/app php-make npm run watch
+# (for debugging): docker run -it --rm -v ./.:/app php-make bash
+
+FROM php:8.2
+
+RUN apt update
+RUN apt install -y libzip-dev unzip nodejs npm
+#RUN apt install -y php8.2-zip
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install zip
+
+WORKDIR /app
+
+# install composer
+RUN mkdir -p /app/build/tools
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /app/build/tools
+RUN ln -s /app/build/tools/composer.phar /usr/local/bin/composer
+
+CMD ["make"]
