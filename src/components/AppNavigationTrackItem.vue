@@ -54,12 +54,12 @@
 				</template>
 				{{ t('maps', 'Change color') }}
 			</NcActionButton>
-			<NCActionButton v-if="parentEnabled && track.enabled && track.isUpdateable"
-				icon="icon-caret"
-				:close-after-click="true"
+			<NcActionButton v-if="parentEnabled && track.enabled && track.isUpdateable"
+				:icon="track.dashed ? 'icon-checkmark' : ''"
+				:close-after-click="false"
 				@click="onSwitchDashedClick">
-				{{ track.dashed ? t('maps', 'Solid line') : t('maps', 'Dashed line') }}
-			</NCActionButton>
+				{{ t('maps', 'Dashed line') }}
+			</NcActionButton>
 			<NcActionButton v-if="parentEnabled && track.enabled && track.isShareable && !isPublic()"
 				icon="icon-share"
 				:close-after-click="true"
