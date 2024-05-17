@@ -230,6 +230,7 @@ class TracksService {
 			'id' => intval($row['id']),
 			'file_id' => intval($row['file_id']),
 			'color' => $row['color'],
+            'dashed' => $row['dashed'],
 			'metadata' => $row['metadata'],
 			'etag' => $row['etag'],
 			'path' => $path,
@@ -255,7 +256,7 @@ class TracksService {
 		$userFolder = $this->root->getUserFolder($userId);
         $tracks = [];
         $qb = $this->qb;
-        $qb->select('id', 'file_id', 'color', 'metadata', 'etag')
+        $qb->select('id', 'file_id', 'color', 'dashed', 'metadata', 'etag')
             ->from('maps_tracks', 't')
             ->where(
                 $qb->expr()->eq('user_id', $qb->createNamedParameter($userId, IQueryBuilder::PARAM_STR))
@@ -323,7 +324,7 @@ class TracksService {
     public function getTrackFromDB($id, $userId=null) {
         $track = null;
         $qb = $this->qb;
-        $qb->select('id', 'file_id', 'color', 'metadata', 'etag')
+        $qb->select('id', 'file_id', 'color', 'dashed', 'metadata', 'etag')
             ->from('maps_tracks', 't')
             ->where(
                 $qb->expr()->eq('id', $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT))
@@ -352,6 +353,7 @@ class TracksService {
 					'id' => intval($row['id']),
 					'file_id' => intval($row['file_id']),
 					'color' => $row['color'],
+                    'dashed' => $row['dashed'],
 					'metadata' => $row['metadata'],
 					'etag' => $row['etag'],
 					'path' => '',
@@ -403,6 +405,7 @@ class TracksService {
 					'id' => intval($row['id']),
 					'file_id' => intval($row['file_id']),
 					'color' => $row['color'],
+                    'dashed' => $row['dashed'],
 					'metadata' => $row['metadata'],
 					'etag' => $row['etag'],
 					'path' => '',
@@ -439,11 +442,14 @@ class TracksService {
         return $trackId;
     }
 
-    public function editTrackInDB($id, $color, $metadata, $etag) {
+    public function editTrackInDB($id, $color, $dashed, $metadata, $etag) {
         $qb = $this->qb;
         $qb->update('maps_tracks');
         if ($color !== null) {
             $qb->set('color', $qb->createNamedParameter($color, IQueryBuilder::PARAM_STR));
+        }
+        if ($dashed !== null) {
+            $qb->set('dashed', $qb->createNamedParameter($dashed, IQueryBuilder::PARAM_BOOL));
         }
         if ($metadata !== null) {
             $qb->set('metadata', $qb->createNamedParameter($metadata, IQueryBuilder::PARAM_STR));

@@ -68,11 +68,13 @@
 				color="black"
 				:opacity="1"
 				:weight="4 * 1.6"
+				:dash-array="dashed ? '12, 10' : '0'"
 				:lat-lngs="line.points" />
 			<LPolyline
 				:color="color"
 				:opacity="1"
 				:weight="4"
+				:dash-array="dashed ? '12, 10' : '0'"
 				:lat-lngs="line.points" />
 		</LFeatureGroup>
 	</LFeatureGroup>
@@ -194,6 +196,9 @@ export default {
 		color() {
 			return this.track.color || '#0082c9'
 		},
+		dashed() {
+			return this.track.dashed || false
+		},
 		firstPointMarkerIcon() {
 			const selectedClass = this.track.selected
 				? 'selected'
@@ -305,6 +310,7 @@ export default {
 				this.$emit('point-hover', hoverPoint)
 			}
 		},
+				// TODO: F set symbol from url / file in folder
 		isPublic() {
 			return isPublic()
 		},
