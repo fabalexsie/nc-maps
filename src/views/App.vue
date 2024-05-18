@@ -103,7 +103,7 @@
 			</template>
 		</MapsNavigation>
 		<NcAppContent :allow-swipe-navigation="false">
-			<div id="map-and-memories">
+			<div id="map-and-memories" :class="{'mobile': isMobile, 'desktop':!isMobile}">
 				<div id="app-content-wrapper">
 					<Map
 						ref="map"
@@ -211,6 +211,7 @@
 </template>
 
 <script>
+import { isMobile } from '@nextcloud/vue'
 import NcContent from '@nextcloud/vue/dist/Components/NcContent.js'
 import NcAppContent from '@nextcloud/vue/dist/Components/NcAppContent.js'
 import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
@@ -259,6 +260,8 @@ export default {
 		AppNavigationDevicesItem,
 		AppNavigationMyMapsItem,
 	},
+
+	mixins: [isMobile],
 
 	data() {
 		return {
@@ -2493,13 +2496,22 @@ export default {
 	display: flex;
 	height: 100%;
 }
-
-#map-and-memories #app-content-wrapper {
-	width: 100%;
+#map-and-memories.mobile {
+	flex-direction: column;
 }
 
-#map-and-memories #memories-iframe {
+#map-and-memories.desktop #app-content-wrapper {
+	width: 100%;
+}
+#map-and-memories.desktop #memories-iframe {
 	width: 50%;
+}
+
+#map-and-memories.mobile #app-content-wrapper {
+	height: 50%;
+}
+#map-and-memories.mobile #memories-iframe {
+	height: 50%;
 }
 
 #app-content-wrapper {
