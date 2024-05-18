@@ -262,7 +262,7 @@ class TracksControllerTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals('File not found', $data);
 
         // edit track
-        $resp = $this->tracksController->editTrack($trackId, '#002244', null, null);
+        $resp = $this->tracksController->editTrack($trackId, '#002244', null, null, null);
         $status = $resp->getStatus();
         $this->assertEquals(200, $status);
         $data = $resp->getData();
@@ -285,7 +285,7 @@ class TracksControllerTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(true, $foundTestFile);
 
         // edit track that does not exist
-        $resp = $this->tracksController->editTrack(0, '#002244', null, null);
+        $resp = $this->tracksController->editTrack(0, '#002244', null, null, null);
         $status = $resp->getStatus();
         $this->assertEquals(400, $status);
         $data = $resp->getData();
