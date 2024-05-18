@@ -193,7 +193,7 @@ class PublicTracksController extends PublicPageController {
 				// first time we get it OR the file changed
 				if (!$track['metadata'] || $track['etag'] !== $trackFile->getEtag()) {
 					$metadata = $this->tracksService->generateTrackMetadata($trackFile);
-					$this->tracksService->editTrackInDB($track['id'], null, $metadata, $trackFile->getEtag());
+					$this->tracksService->editTrackInDB($track['id'], null, null, $metadata, $trackFile->getEtag());
 				}
 				else {
 					$metadata = $track['metadata'];
@@ -230,7 +230,7 @@ class PublicTracksController extends PublicPageController {
                 // first time we get it OR the file changed
                 if (!$track['metadata'] || $track['etag'] !== $trackFile->getEtag()) {
                     $metadata = $this->tracksService->generateTrackMetadata($trackFile);
-                    $this->tracksService->editTrackInDB($track['id'], null, $metadata, $trackFile->getEtag());
+                    $this->tracksService->editTrackInDB($track['id'], null, null, $metadata, $trackFile->getEtag());
                 }
                 else {
                     $metadata = $track['metadata'];
@@ -259,7 +259,7 @@ class PublicTracksController extends PublicPageController {
 	 * @throws NotFoundException
 	 * @throws NotPermittedException
 	 */
-    public function editTrack($id, $color, $metadata, $etag): DataResponse {
+    public function editTrack($id, $color, $dashed, $metadata, $etag): DataResponse {
 		$share = $this->getShare();
 		$permissions = $share->getPermissions();
 		$folder = $this->getShareNode();
@@ -268,7 +268,7 @@ class PublicTracksController extends PublicPageController {
 			$owner = $share->getShareOwner();
 			$track = $this->tracksService->getTrackFromDB($id, $owner);
 			if ($track !== null) {
-				$this->tracksService->editTrackInDB($id, $color, $metadata, $etag);
+				$this->tracksService->editTrackInDB($id, $color, $dashed, $metadata, $etag);
 				return new DataResponse('EDITED');
 			}
 			else {
