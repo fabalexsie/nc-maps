@@ -376,7 +376,7 @@ class TracksService {
     public function getTrackByFileIDFromDB($fileId, $userId=null) {
         $track = null;
         $qb = $this->qb;
-        $qb->select('id', 'file_id', 'color', 'metadata', 'etag')
+        $qb->select('id', 'file_id', 'color', 'dashed', 'metadata', 'etag')
             ->from('maps_tracks', 't')
             ->where(
                 $qb->expr()->eq('file_id', $qb->createNamedParameter($fileId, IQueryBuilder::PARAM_INT))
