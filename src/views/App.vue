@@ -101,7 +101,7 @@
 					@my-maps-clicked="onMyMapsClicked" />
 			</template>
 		</MapsNavigation>
-		<NcAppContent>
+		<NcAppContent :allow-swipe-navigation="false">
 			<div id="app-content-wrapper">
 				<Map
 					ref="map"
