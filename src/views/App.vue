@@ -103,73 +103,79 @@
 			</template>
 		</MapsNavigation>
 		<NcAppContent :allow-swipe-navigation="false">
-			<div id="app-content-wrapper">
-				<Map
-					ref="map"
-					:active-layer-id-prop="activeLayerId"
-					:map-bounds-prop="mapBounds"
-					:search-data="searchData"
-					:routing-search-data="routingSearchData"
-					:favorites="displayedFavorites"
-					:favorite-categories="favoriteCategories"
-					:favorites-enabled="favoritesEnabled"
-					:favorites-draggable="favoritesDraggable"
-					:photos="photos"
-					:photos-enabled="photosEnabled"
-					:photos-draggable="photosDraggable"
-					:show-photo-suggestions="showPhotoSuggestions"
-					:photo-suggestions="photoSuggestions"
-					:photo-suggestions-tracks-and-devices="photoSuggestionsTracksAndDevices"
-					:photo-suggestions-selected-indices="photoSuggestionsSelectedIndices"
-					:photo-suggestions-hide-photos="photoSuggestionsHidePhotos"
-					:contacts="contacts"
-					:contact-groups="contactGroups"
-					:contacts-enabled="contactsEnabled"
-					:tracks="displayedTracks"
-					:tracks-enabled="tracksEnabled"
-					:devices="displayedDevices"
-					:devices-enabled="devicesEnabled"
-					:slider-enabled="sliderEnabled"
-					:slider-start-timestamp="sliderStart"
-					:slider-end-timestamp="sliderEnd"
-					:min-data-timestamp="minDataTimestamp"
-					:max-data-timestamp="maxDataTimestamp"
-					:state="mapState"
-					:last-actions="lastActions"
-					:last-canceled-actions="lastCanceledActions"
-					@add-click="onMapAddClick"
-					@click-favorite="onFavoriteClick"
-					@edit-favorite="onFavoriteEdit"
-					@add-favorite="onFavoriteAdd"
-					@add-address-favorite="onAddressFavoriteAdd"
-					@add-to-map-favorite="onAddFavoriteToMap"
-					@delete-favorite="onFavoriteDelete"
-					@delete-favorites="onFavoritesDelete"
-					@coords-reset="resetPhotosCoords"
-					@address-deleted="onContactAddressDelete"
-					@add-to-map-contact="onAddContactToMap"
-					@contact-placed="onContactPlace"
-					@photo-clusters-loading="onPhotoClustersLoading"
-					@photo-clusters-loaded="onPhotoClustersLoaded"
-					@add-to-map-photo="onAddPhotoToMap"
-					@place-photos="placePhotoFilesOrFolder"
-					@photo-moved="onPhotoMoved"
-					@photo-suggestion-selected="onPhotoSuggestionSelected"
-					@photo-suggestion-moved="onPhotoSuggestionMoved"
-					@open-sidebar="openSidebar"
-					@click-track="onTrackClick"
-					@add-to-map-track="onAddTrackToMap"
-					@search-enable-track="onSearchEnableTrack"
-					@change-track-color="onChangeTrackColorClicked"
-					@track-added="onTrackAdded"
-					@add-to-map-device="onAddDeviceToMap"
-					@toggle-device-history="onToggleDeviceHistory"
-					@change-device-color="onChangeDeviceColorClicked"
-					@export-device="onExportDevice"
-					@search-enable-device="onSearchEnableDevice"
-					@cancel="cancelAction"
-					@redo="redoAction"
-					@slider-range-changed="sliderStart = $event.start; sliderEnd = $event.end" />
+			<div id="map-and-memories">
+				<div id="app-content-wrapper">
+					<Map
+						ref="map"
+						:active-layer-id-prop="activeLayerId"
+						:map-bounds-prop="mapBounds"
+						:search-data="searchData"
+						:routing-search-data="routingSearchData"
+						:favorites="displayedFavorites"
+						:favorite-categories="favoriteCategories"
+						:favorites-enabled="favoritesEnabled"
+						:favorites-draggable="favoritesDraggable"
+						:photos="photos"
+						:photos-enabled="photosEnabled"
+						:photos-draggable="photosDraggable"
+						:show-photo-suggestions="showPhotoSuggestions"
+						:photo-suggestions="photoSuggestions"
+						:photo-suggestions-tracks-and-devices="photoSuggestionsTracksAndDevices"
+						:photo-suggestions-selected-indices="photoSuggestionsSelectedIndices"
+						:photo-suggestions-hide-photos="photoSuggestionsHidePhotos"
+						:contacts="contacts"
+						:contact-groups="contactGroups"
+						:contacts-enabled="contactsEnabled"
+						:tracks="displayedTracks"
+						:tracks-enabled="tracksEnabled"
+						:devices="displayedDevices"
+						:devices-enabled="devicesEnabled"
+						:slider-enabled="sliderEnabled"
+						:slider-start-timestamp="sliderStart"
+						:slider-end-timestamp="sliderEnd"
+						:min-data-timestamp="minDataTimestamp"
+						:max-data-timestamp="maxDataTimestamp"
+						:state="mapState"
+						:last-actions="lastActions"
+						:last-canceled-actions="lastCanceledActions"
+						@add-click="onMapAddClick"
+						@click-favorite="onFavoriteClick"
+						@edit-favorite="onFavoriteEdit"
+						@add-favorite="onFavoriteAdd"
+						@add-address-favorite="onAddressFavoriteAdd"
+						@add-to-map-favorite="onAddFavoriteToMap"
+						@delete-favorite="onFavoriteDelete"
+						@delete-favorites="onFavoritesDelete"
+						@coords-reset="resetPhotosCoords"
+						@address-deleted="onContactAddressDelete"
+						@add-to-map-contact="onAddContactToMap"
+						@contact-placed="onContactPlace"
+						@photo-clusters-loading="onPhotoClustersLoading"
+						@photo-clusters-loaded="onPhotoClustersLoaded"
+						@add-to-map-photo="onAddPhotoToMap"
+						@place-photos="placePhotoFilesOrFolder"
+						@photo-moved="onPhotoMoved"
+						@photo-suggestion-selected="onPhotoSuggestionSelected"
+						@photo-suggestion-moved="onPhotoSuggestionMoved"
+						@open-sidebar="openSidebar"
+						@click-track="onTrackClick"
+						@add-to-map-track="onAddTrackToMap"
+						@search-enable-track="onSearchEnableTrack"
+						@change-track-color="onChangeTrackColorClicked"
+						@track-added="onTrackAdded"
+						@add-to-map-device="onAddDeviceToMap"
+						@toggle-device-history="onToggleDeviceHistory"
+						@change-device-color="onChangeDeviceColorClicked"
+						@export-device="onExportDevice"
+						@search-enable-device="onSearchEnableDevice"
+						@cancel="cancelAction"
+						@redo="redoAction"
+						@slider-range-changed="sliderStart = $event.start; sliderEnd = $event.end" />
+				</div>
+				<iframe v-if="showMemories()"
+					id="memories-iframe"
+					:src="memoriesPath()"
+					frameborder="0" />
 			</div>
 		</NcAppContent>
 		<Sidebar
@@ -2465,6 +2471,12 @@ export default {
 				this.sendPositionLoop()
 			}
 		},
+		showMemories: () => {
+			return isPublic()
+		},
+		memoriesPath: () => {
+			return window.location.toString().replace('maps', 'memories')
+		},
 	},
 }
 </script>
@@ -2475,6 +2487,19 @@ export default {
 	position: absolute !important;
 	top: 8px;
 	right: 8px;
+}
+
+#map-and-memories {
+	display: flex;
+	height: 100%;
+}
+
+#map-and-memories #app-content-wrapper {
+	width: 100%;
+}
+
+#map-and-memories #memories-iframe {
+	width: 50%;
 }
 
 #app-content-wrapper {
