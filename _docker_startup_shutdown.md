@@ -10,6 +10,8 @@ then you can open the browser and go to http://nextcloud.local
 
 for updating the maps app from source, see the Dockerfile.php-make in the workspace/server/apps-extra/maps folder
 
+> (live transpiling frontend): docker run -it --rm -v ./.:/app php-make npm run watch
+
 --
 
 To stop the container run:
